@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="QuickTools — simple, fast, free online calculators and utilities.">
+<title>QuickTools — Free Online Tools</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#647084;--accent:#5b5cf0;--border:#e5e9f2}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text)}
+header{padding:56px 20px 34px;text-align:center;background:linear-gradient(135deg,#111936,#5b5cf0);color:white}
+header h1{font-size:42px;margin:0 0 10px;letter-spacing:-1px}header p{margin:0;color:#dce1ff;font-size:17px}
+main{max-width:1050px;margin:0 auto;padding:28px 18px 60px}.search{width:100%;padding:16px 18px;border:1px solid var(--border);border-radius:14px;font-size:16px;outline:none;background:white;box-shadow:0 8px 25px #17203310}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:24px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:0 8px 24px #1720330a}
+.card h2{margin:0 0 7px;font-size:20px}.card p{color:var(--muted);margin:0 0 18px;line-height:1.5}
+input{width:100%;padding:12px;border:1px solid var(--border);border-radius:10px;font-size:15px;margin-bottom:10px}
+button{border:0;border-radius:10px;padding:12px 16px;background:var(--accent);color:white;font-weight:700;cursor:pointer}button:hover{filter:brightness(.95)}
+.result{margin-top:12px;padding:12px;border-radius:10px;background:#f0f1ff;font-weight:700;min-height:20px}
+footer{text-align:center;color:var(--muted);padding:20px}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<header>
+  <h1>QuickTools</h1>
+  <p>Simple tools. Fast answers. Completely free.</p>
+</header>
+<main>
+  <input id="search" class="search" placeholder="Search tools..." aria-label="Search tools">
+  <section class="grid" id="tools">
+    <article class="card tool" data-name="percentage calculator">
+      <h2>Percentage Calculator</h2>
+      <p>Find a percentage of a number.</p>
+      <input id="pct" type="number" placeholder="Percentage">
+      <input id="num" type="number" placeholder="Number">
+      <button onclick="percentage()">Calculate</button>
+      <div class="result" id="pctResult"></div>
+    </article>
+
+    <article class="card tool" data-name="tip calculator">
+      <h2>Tip Calculator</h2>
+      <p>Calculate a tip and the total bill.</p>
+      <input id="bill" type="number" step="0.01" placeholder="Bill amount">
+      <input id="tip" type="number" step="0.1" placeholder="Tip %">
+      <button onclick="tipCalc()">Calculate</button>
+      <div class="result" id="tipResult"></div>
+    </article>
+
+    <article class="card tool" data-name="age calculator">
+      <h2>Age Calculator</h2>
+      <p>Enter your birth date to estimate your age.</p>
+      <input id="birth" type="date">
+      <button onclick="ageCalc()">Calculate</button>
+      <div class="result" id="ageResult"></div>
+    </article>
+
+    <article class="card tool" data-name="random number generator">
+      <h2>Random Number</h2>
+      <p>Generate a random number between two values.</p>
+      <input id="min" type="number" placeholder="Minimum">
+      <input id="max" type="number" placeholder="Maximum">
+      <button onclick="randomNumber()">Generate</button>
+      <div class="result" id="randomResult"></div>
+    </article>
+
+    <article class="card tool" data-name="unit converter">
+      <h2>Miles → Kilometers</h2>
+      <p>Convert miles to kilometers instantly.</p>
+      <input id="miles" type="number" step="any" placeholder="Miles">
+      <button onclick="convertMiles()">Convert</button>
+      <div class="result" id="mileResult"></div>
+    </article>
+
+    <article class="card tool" data-name="countdown timer">
+      <h2>Countdown Timer</h2>
+      <p>Start a simple minute-and-second countdown.</p>
+      <input id="seconds" type="number" min="1" placeholder="Seconds">
+      <button onclick="startTimer()">Start</button>
+      <div class="result" id="timerResult">Ready</div>
+    </article>
+  </section>
+</main>
+<footer>QuickTools • Free to use</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+function percentage(){let p=+$('pct').value,n=+$('num').value;$('pctResult').textContent=isFinite(p)&&isFinite(n)?(p/100*n).toLocaleString():'Enter both values.'}
+function tipCalc(){let b=+$('bill').value,t=+$('tip').value;if(!isFinite(b)||!isFinite(t))return $('tipResult').textContent='Enter both values.';let x=b*t/100;$('tipResult').textContent=`Tip: $${x.toFixed(2)} • Total: $${(b+x).toFixed(2)}`}
+function ageCalc(){let d=new Date($('birth').value),now=new Date();if(isNaN(d))return $('ageResult').textContent='Choose a birth date.';let a=now.getFullYear()-d.getFullYear();let m=now.getMonth()-d.getMonth();if(m<0||(m===0&&now.getDate()<d.getDate()))a--;$('ageResult').textContent=`Age: ${a} years`}
+function randomNumber(){let a=Math.ceil(+$('min').value),b=Math.floor(+$('max').value);if(!isFinite(a)||!isFinite(b)||a>b)return $('randomResult').textContent='Enter a valid range.';$('randomResult').textContent=Math.floor(Math.random()*(b-a+1))+a}
+function convertMiles(){let m=+$('miles').value;$('mileResult').textContent=isFinite(m)?`${(m*1.609344).toFixed(3)} km`:'Enter a value.'}
+let timer;
+function startTimer(){clearInterval(timer);let s=Math.floor(+$('seconds').value);if(!s||s<1)return $('timerResult').textContent='Enter seconds.';let end=Date.now()+s*1000;function tick(){let r=Math.max(0,Math.ceil((end-Date.now())/1000));$('timerResult').textContent=r?`${Math.floor(r/60)}:${String(r%60).padStart(2,'0')}`:'Done!';if(!r)clearInterval(timer)}tick();timer=setInterval(tick,250)}
+$('search').addEventListener('input',e=>{let q=e.target.value.toLowerCase();document.querySelectorAll('.tool').forEach(c=>c.classList.toggle('hidden',!c.dataset.name.includes(q)))})
+</script>
+</body>
+</html>
