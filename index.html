@@ -1,153 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="QuickTools — free, fast online calculators, converters, timers, and everyday tools.">
-<meta name="theme-color" content="#0b1020">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="QuickTools — fast, free online calculators, converters, generators and timers.">
+<meta name="theme-color" content="#070a12">
 <title>QuickTools — Free Online Tools</title>
 <style>
-:root{
-  --bg:#070b16;--panel:#0e1528;--panel2:#121b31;--text:#f5f7ff;--muted:#9aa6bf;
-  --line:#202b45;--accent:#7c5cff;--accent2:#24d6a5;--danger:#ff657a;
-  --shadow:0 18px 50px rgba(0,0,0,.28)
-}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 50% -10%,#1a2350 0,#070b16 42%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-button,input,select{font:inherit}button{cursor:pointer}
-.container{width:min(1120px,92%);margin:auto}
-header{position:sticky;top:0;z-index:10;background:rgba(7,11,22,.78);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}
-.nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{font-weight:900;font-size:21px;letter-spacing:-.6px;display:flex;align-items:center;gap:9px}
-.logo{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--accent),#38a9ff);display:grid;place-items:center;box-shadow:0 8px 25px rgba(124,92,255,.3)}
-.logo:after{content:"✓";font-weight:1000}
-.nav-actions{display:flex;gap:8px}.icon-btn{border:1px solid var(--line);background:var(--panel);color:var(--text);width:40px;height:40px;border-radius:12px}
-.hero{padding:78px 0 34px;text-align:center}.eyebrow{color:#b9b0ff;font-weight:800;font-size:13px;letter-spacing:1.4px;text-transform:uppercase}
-h1{font-size:clamp(40px,7vw,72px);line-height:.98;margin:14px 0 18px;letter-spacing:-3px}
-.hero p{max-width:680px;margin:0 auto;color:var(--muted);font-size:18px;line-height:1.65}
-.search-wrap{max-width:720px;margin:30px auto 0;position:relative}.search{width:100%;padding:17px 18px 17px 50px;border-radius:16px;border:1px solid var(--line);background:rgba(14,21,40,.9);color:var(--text);outline:none;box-shadow:var(--shadow)}
-.search:focus{border-color:#6752d9}.search-icon{position:absolute;left:18px;top:15px;color:var(--muted);font-size:20px}
-.tabs{display:flex;gap:8px;overflow:auto;padding:8px 0 22px;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}
-.tab{white-space:nowrap;border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:9px 13px;border-radius:999px}.tab.active,.tab:hover{background:#171c38;color:#fff;border-color:#5d50bb}
-.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin:18px 0 14px}.section-head h2{margin:0;font-size:24px}.count{color:var(--muted);font-size:14px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;padding-bottom:55px}
-.card{background:linear-gradient(180deg,rgba(18,27,49,.94),rgba(12,18,34,.94));border:1px solid var(--line);border-radius:19px;padding:20px;min-height:190px;display:flex;flex-direction:column;transition:.2s;box-shadow:0 10px 35px rgba(0,0,0,.12)}
-.card:hover{transform:translateY(-3px);border-color:#3a4670}.card-top{display:flex;justify-content:space-between;gap:10px}.tool-icon{width:42px;height:42px;border-radius:13px;background:#171f38;display:grid;place-items:center;font-size:21px}.tag{font-size:11px;color:#b7afd9;background:#1b1732;border:1px solid #332b61;padding:5px 8px;border-radius:999px;height:max-content}
-.card h3{margin:16px 0 7px;font-size:18px}.card p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}.open{margin-top:auto;padding-top:16px;color:#d8d3ff;font-weight:800;font-size:13px}
-.empty{display:none;text-align:center;color:var(--muted);padding:45px 0 70px}
-footer{border-top:1px solid var(--line);padding:30px 0 45px;color:var(--muted);font-size:13px}.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.68);display:none;align-items:center;justify-content:center;padding:18px;z-index:30}.modal.show{display:flex}
-.modal-box{width:min(560px,100%);max-height:90vh;overflow:auto;background:#0d1426;border:1px solid #293655;border-radius:22px;padding:24px;box-shadow:0 30px 100px #000}
-.modal-head{display:flex;justify-content:space-between;align-items:center}.modal-head h2{margin:0}.close{border:0;background:#182039;color:#fff;width:38px;height:38px;border-radius:11px}
-.form{display:grid;gap:12px;margin-top:18px}.form label{font-size:13px;color:var(--muted)}.form input,.form select{width:100%;padding:13px;border-radius:12px;border:1px solid var(--line);background:#090f1e;color:#fff;outline:none}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.primary{border:0;background:linear-gradient(135deg,var(--accent),#5d8dff);color:#fff;padding:13px 16px;border-radius:12px;font-weight:900}.result{margin-top:15px;padding:15px;border:1px solid #293655;background:#101a31;border-radius:13px;font-weight:800}
-.small{font-size:12px;color:var(--muted);line-height:1.5}.big{font-size:30px}.timer{font-variant-numeric:tabular-nums;text-align:center;font-size:52px;font-weight:900;letter-spacing:2px;padding:20px}
-@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.grid{grid-template-columns:1fr}.hero{padding-top:55px}h1{letter-spacing:-2px}.row{grid-template-columns:1fr}.nav{height:60px}}
+:root{--bg:#070a12;--surface:#0d1220;--surface2:#11182a;--text:#f7f9ff;--muted:#9aa5bb;--line:#202a40;--a:#7c5cff;--b:#20d7a0;--shadow:0 25px 80px #0006}
+*{box-sizing:border-box}body{margin:0;color:var(--text);background:radial-gradient(900px 500px at 50% -100px,#20265d 0,transparent 65%),var(--bg);font:15px Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}
+.wrap{width:min(1160px,92%);margin:auto}.nav{height:72px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff0d}.brand{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:950;letter-spacing:-.7px}.mark{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--a),#3c9cff);display:grid;place-items:center;box-shadow:0 8px 30px #7c5cff55}.mark:after{content:"Q";font-weight:1000}.navlinks{display:flex;gap:8px}.navlinks button{border:1px solid var(--line);background:#0d1220;color:var(--muted);border-radius:11px;padding:9px 12px}.navlinks button:hover{color:#fff;border-color:#3a4867}
+.hero{text-align:center;padding:82px 0 34px}.pill{display:inline-flex;gap:8px;align-items:center;border:1px solid #ffffff12;background:#ffffff08;padding:7px 11px;border-radius:999px;color:#c8c3ff;font-weight:800;font-size:12px}.dot{width:7px;height:7px;border-radius:50%;background:var(--b);box-shadow:0 0 15px var(--b)}
+h1{font-size:clamp(45px,7vw,78px);line-height:.95;letter-spacing:-4px;margin:18px 0}.grad{background:linear-gradient(100deg,#fff,#b9b1ff 55%,#7fe7ff);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{max-width:700px;margin:auto;color:var(--muted);font-size:18px;line-height:1.65}
+.search{max-width:760px;margin:28px auto 0;position:relative}.search input{width:100%;padding:17px 18px 17px 48px;border:1px solid var(--line);border-radius:16px;background:#0d1424;color:#fff;outline:none;box-shadow:var(--shadow)}.search input:focus{border-color:#6e5ae4}.search span{position:absolute;left:18px;top:14px;font-size:22px;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:30px 0 34px}.stat{border:1px solid var(--line);background:#0c1220aa;border-radius:15px;padding:15px;text-align:center}.stat b{display:block;font-size:21px}.stat small{color:var(--muted)}
+.tabs{display:flex;gap:8px;overflow:auto;padding-bottom:16px;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}.tab{white-space:nowrap;border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:999px;padding:9px 14px}.tab.active,.tab:hover{background:#1a1940;color:#fff;border-color:#6658c9}
+.head{display:flex;justify-content:space-between;align-items:end;margin:12px 0 15px}.head h2{margin:0;font-size:25px}.head span{color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding-bottom:70px}
+.card{position:relative;border:1px solid var(--line);border-radius:19px;background:linear-gradient(160deg,#121a2c,#0b101d);padding:18px;min-height:210px;display:flex;flex-direction:column;transition:.2s;overflow:hidden}.card:before{content:"";position:absolute;inset:-80px auto auto -80px;width:170px;height:170px;background:#7c5cff16;border-radius:50%;filter:blur(20px)}.card:hover{transform:translateY(-5px);border-color:#3b4770;box-shadow:0 18px 50px #0005}.top{display:flex;justify-content:space-between;position:relative}.ico{width:44px;height:44px;border-radius:13px;background:#171f34;display:grid;place-items:center;font-size:21px}.tag{font-size:10px;height:max-content;padding:5px 8px;border-radius:999px;color:#c9c3ff;background:#211c3b;border:1px solid #383063}.card h3{font-size:17px;margin:17px 0 7px;position:relative}.card p{color:var(--muted);line-height:1.5;margin:0;position:relative;font-size:13px}.open{margin-top:auto;padding-top:17px;color:#ddd8ff;font-weight:900;font-size:13px;position:relative}.empty{text-align:center;padding:50px;color:var(--muted);display:none}
+footer{border-top:1px solid var(--line);padding:35px 0 55px;color:var(--muted)}.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.foot b{color:#fff}.foot a{color:var(--muted);text-decoration:none;margin-left:15px}.foot a:hover{color:#fff}
+.modal{display:none;position:fixed;inset:0;background:#000b;z-index:20;align-items:center;justify-content:center;padding:18px}.modal.show{display:flex}.box{width:min(570px,100%);max-height:90vh;overflow:auto;background:#0d1425;border:1px solid #2a3856;border-radius:23px;padding:23px;box-shadow:0 35px 100px #000}.mh{display:flex;justify-content:space-between;align-items:center}.mh h2{margin:0}.close{border:0;background:#18223a;color:#fff;border-radius:11px;width:39px;height:39px;font-size:20px}.form{display:grid;gap:11px;margin-top:18px}.form label{color:var(--muted);font-size:12px}.form input,.form select,.form textarea{display:block;width:100%;margin-top:6px;padding:13px;border:1px solid var(--line);background:#080e1c;color:#fff;border-radius:12px;outline:none}.form textarea{min-height:90px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.primary{border:0;border-radius:12px;padding:13px;color:#fff;font-weight:900;background:linear-gradient(135deg,var(--a),#548eff)}.result{border:1px solid #293756;background:#111a30;border-radius:13px;padding:15px;font-weight:800;line-height:1.5}.big{font-size:32px;text-align:center}.timer{font-size:52px;text-align:center;font-weight:950;font-variant-numeric:tabular-nums;padding:15px}.note{color:var(--muted);font-size:12px;line-height:1.5}
+@media(max-width:950px){.grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr)}.navlinks button:nth-child(1){display:none}.stats{grid-template-columns:1fr 1fr}.hero{padding-top:55px}}@media(max-width:500px){.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.navlinks{display:none}h1{letter-spacing:-2.5px}}
 </style>
 </head>
 <body>
-<header><div class="container nav"><div class="brand"><span class="logo"></span>QuickTools</div><div class="nav-actions"><button class="icon-btn" id="themeBtn" title="Toggle theme">☼</button></div></div></header>
-
-<main class="container">
-<section class="hero">
-<div class="eyebrow">20 free tools • no sign-up</div>
-<h1>Get it done.<br>Quickly.</h1>
-<p>Simple calculators, converters, generators, and timers for everyday tasks. No account. No clutter.</p>
-<div class="search-wrap"><span class="search-icon">⌕</span><input id="search" class="search" placeholder="Search tools..." autocomplete="off"></div>
-</section>
-
-<div class="tabs" id="tabs">
-<button class="tab active" data-cat="all">All tools</button><button class="tab" data-cat="math">Math</button><button class="tab" data-cat="convert">Converters</button><button class="tab" data-cat="time">Time</button><button class="tab" data-cat="random">Random</button><button class="tab" data-cat="everyday">Everyday</button>
-</div>
-
-<div class="section-head"><h2>Tools</h2><span class="count" id="count">20 tools</span></div>
-<div class="grid" id="grid"></div><div class="empty" id="empty">No tools match your search.</div>
+<header><div class="wrap nav"><div class="brand"><span class="mark"></span>QuickTools</div><div class="navlinks"><button onclick="scrollTo({top:0,behavior:'smooth'})">Home</button><button onclick="document.getElementById('search').focus()">Search</button><button onclick="showAbout()">About</button></div></div></header>
+<main class="wrap">
+<section class="hero"><div class="pill"><span class="dot"></span> 20 tools · free · no account</div><h1>Small tools.<br><span class="grad">Big time saved.</span></h1><p>Calculators, converters, generators, and timers designed to give you an answer without making you fight through a complicated website.</p><div class="search"><span>⌕</span><input id="search" placeholder="What do you need to calculate?" autocomplete="off"></div></section>
+<section class="stats"><div class="stat"><b>20+</b><small>free tools</small></div><div class="stat"><b>0</b><small>accounts required</small></div><div class="stat"><b>Instant</b><small>results in your browser</small></div></section>
+<div class="tabs" id="tabs"><button class="tab active" data-cat="all">All</button><button class="tab" data-cat="math">Math</button><button class="tab" data-cat="convert">Converters</button><button class="tab" data-cat="time">Time</button><button class="tab" data-cat="random">Random</button><button class="tab" data-cat="everyday">Everyday</button></div>
+<div class="head"><h2>Tools</h2><span id="count">20 tools</span></div><div class="grid" id="grid"></div><div class="empty" id="empty">Nothing matched that search. Try another phrase.</div>
 </main>
-
-<footer><div class="container footer-inner"><span>© 2026 QuickTools</span><span>Fast • Free • Simple</span></div></footer>
-
-<div class="modal" id="modal"><div class="modal-box"><div class="modal-head"><h2 id="modalTitle">Tool</h2><button class="close" id="close">×</button></div><div id="modalBody"></div></div></div>
-
+<footer><div class="wrap foot"><div><b>QuickTools</b><br>Useful tools, without the clutter.</div><div><a href="#" onclick="showAbout();return false">About</a><a href="#" onclick="showPrivacy();return false">Privacy</a></div></div></footer>
+<div class="modal" id="modal"><div class="box"><div class="mh"><h2 id="mt">Tool</h2><button class="close" onclick="closeModal()">×</button></div><div id="mb"></div></div></div>
 <script>
 const tools=[
-{id:'percent',name:'Percentage Calculator',desc:'Find percentages, increases, decreases, and values.',cat:'math',icon:'%',tag:'Math'},
-{id:'tip',name:'Tip Calculator',desc:'Calculate a tip and split the total between people.',cat:'everyday',icon:'$',tag:'Everyday'},
-{id:'age',name:'Age Calculator',desc:'Calculate your exact age from a birth date.',cat:'everyday',icon:'🎂',tag:'Everyday'},
-{id:'random',name:'Random Number',desc:'Generate a random number between two values.',cat:'random',icon:'⚄',tag:'Random'},
-{id:'choice',name:'Random Choice',desc:'Pick one option from a list of choices.',cat:'random',icon:'↯',tag:'Random'},
-{id:'coin',name:'Coin Flip',desc:'Flip a virtual coin instantly.',cat:'random',icon:'●',tag:'Random'},
-{id:'dice',name:'Dice Roller',desc:'Roll one or more six-sided dice.',cat:'random',icon:'⚄',tag:'Random'},
-{id:'miles',name:'Miles → Kilometers',desc:'Convert distance from miles to kilometers.',cat:'convert',icon:'↔',tag:'Convert'},
-{id:'km',name:'Kilometers → Miles',desc:'Convert distance from kilometers to miles.',cat:'convert',icon:'↔',tag:'Convert'},
-{id:'temp',name:'°F ↔ °C',desc:'Convert temperatures between Fahrenheit and Celsius.',cat:'convert',icon:'°',tag:'Convert'},
-{id:'lb',name:'Pounds → Kilograms',desc:'Convert weight from pounds to kilograms.',cat:'convert',icon:'⚖',tag:'Convert'},
-{id:'kg',name:'Kilograms → Pounds',desc:'Convert weight from kilograms to pounds.',cat:'convert',icon:'⚖',tag:'Convert'},
-{id:'minutes',name:'Minutes → Hours',desc:'Convert minutes into hours and minutes.',cat:'convert',icon:'◷',tag:'Convert'},
-{id:'discount',name:'Discount Calculator',desc:'Find the sale price and money saved.',cat:'math',icon:'−',tag:'Math'},
-{id:'average',name:'Average Calculator',desc:'Find the average of a list of numbers.',cat:'math',icon:'≈',tag:'Math'},
-{id:'ratio',name:'Ratio Calculator',desc:'Simplify a ratio and find an equivalent value.',cat:'math',icon:'∶',tag:'Math'},
-{id:'countdown',name:'Countdown Timer',desc:'Set a timer and get an alert when it finishes.',cat:'time',icon:'⏱',tag:'Time'},
-{id:'stopwatch',name:'Stopwatch',desc:'Start, pause, reset, and track elapsed time.',cat:'time',icon:'◴',tag:'Time'},
-{id:'date',name:'Date Difference',desc:'Find the number of days between two dates.',cat:'time',icon:'▣',tag:'Time'},
-{id:'bmi',name:'Simple Number Scale',desc:'Calculate a simple normalized score from two numbers.',cat:'math',icon:'1–10',tag:'Math'}
+['percent','Percentage Calculator','Calculate a percentage of a number.','math','%'],['discount','Discount Calculator','Find the sale price and amount saved.','math','−'],['average','Average Calculator','Average a list of numbers instantly.','math','≈'],['ratio','Ratio Simplifier','Simplify a ratio to its smallest form.','math','∶'],
+['tip','Tip Calculator','Calculate tip, total, and split per person.','everyday','$'],['age','Age Calculator','Calculate age from a birth date.','everyday','🎂'],['scale','Number Scale','Turn two values into a simple 0–10 ratio.','everyday','10'],
+['miles','Miles → Kilometers','Convert miles to kilometers.','convert','↔'],['km','Kilometers → Miles','Convert kilometers to miles.','convert','↔'],['temp','Fahrenheit ↔ Celsius','Convert between temperature units.','convert','°'],['lb','Pounds → Kilograms','Convert pounds to kilograms.','convert','⚖'],['kg','Kilograms → Pounds','Convert kilograms to pounds.','convert','⚖'],['minutes','Minutes → Hours','Turn minutes into hours and minutes.','convert','◷'],
+['random','Random Number','Generate a number between two limits.','random','⚄'],['choice','Random Choice','Pick one option from a list.','random','↯'],['coin','Coin Flip','Flip a virtual coin.','random','●'],['dice','Dice Roller','Roll one or more six-sided dice.','random','⚄'],
+['countdown','Countdown Timer','Run a simple countdown in your browser.','time','⏱'],['stopwatch','Stopwatch','Track elapsed time with start and pause.','time','◴'],['date','Date Difference','Find the number of days between two dates.','time','▣']
 ];
-
+const labels={math:'Math',convert:'Convert',time:'Time',random:'Random',everyday:'Everyday'};let active='all';
 const grid=document.getElementById('grid'),search=document.getElementById('search'),count=document.getElementById('count'),empty=document.getElementById('empty');
-let active='all';
-function render(){
- const q=search.value.toLowerCase().trim();
- const list=tools.filter(t=>(active==='all'||t.cat===active)&&(t.name+t.desc+t.tag).toLowerCase().includes(q));
- grid.innerHTML=list.map(t=>`<article class="card"><div class="card-top"><div class="tool-icon">${t.icon}</div><span class="tag">${t.tag}</span></div><h3>${t.name}</h3><p>${t.desc}</p><div class="open">Open tool →</div></article>`).join('');
- count.textContent=`${list.length} tool${list.length===1?'':'s'}`;empty.style.display=list.length?'none':'block';
- [...grid.children].forEach((el,i)=>el.onclick=()=>openTool(list[i]));
-}
-search.oninput=render;
-document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');active=b.dataset.cat;render()});
-
-const modal=document.getElementById('modal'),title=document.getElementById('modalTitle'),body=document.getElementById('modalBody');
-document.getElementById('close').onclick=()=>modal.classList.remove('show');modal.onclick=e=>{if(e.target===modal)modal.classList.remove('show')};
-function show(titleText,html){title.textContent=titleText;body.innerHTML=html;modal.classList.add('show')}
-const input=(id,label,ph='')=>`<label>${label}<input id="${id}" type="number" placeholder="${ph}"></label>`;
-function openTool(t){
-let h='';
-if(t.id==='percent')h=`<div class="form">${input('a','What is the percentage?','25')}${input('b','Of what number?','200')}<button class="primary" onclick="calcPercent()">Calculate</button><div id="r" class="result"></div></div>`;
-if(t.id==='tip')h=`<div class="form">${input('bill','Bill amount','50')}${input('tipP','Tip percentage','20')}${input('people','Number of people','2')}<button class="primary" onclick="calcTip()">Calculate</button><div id="r" class="result"></div></div>`;
-if(t.id==='age')h=`<div class="form"><label>Birth date<input id="birth" type="date"></label><button class="primary" onclick="calcAge()">Calculate age</button><div id="r" class="result"></div></div>`;
-if(t.id==='random')h=`<div class="form">${input('min','Minimum','1')}${input('max','Maximum','100')}<button class="primary" onclick="rand()">Generate</button><div id="r" class="result big"></div></div>`;
-if(t.id==='choice')h=`<div class="form"><label>Choices (separate with commas)<input id="choices" placeholder="Pizza, Tacos, Burgers"></label><button class="primary" onclick="choice()">Choose</button><div id="r" class="result"></div></div>`;
-if(t.id==='coin')h=`<div class="form"><button class="primary" onclick="coin()">Flip coin</button><div id="r" class="result big"></div></div>`;
-if(t.id==='dice')h=`<div class="form">${input('diceN','Number of dice','2')}<button class="primary" onclick="dice()">Roll</button><div id="r" class="result"></div></div>`;
-if(['miles','km','lb','kg','minutes'].includes(t.id))h=`<div class="form">${input('v','Value','10')}<button class="primary" onclick="convert('${t.id}')">Convert</button><div id="r" class="result"></div></div>`;
-if(t.id==='temp')h=`<div class="form">${input('v','Temperature','72')}<select id="unit"><option value="f">Fahrenheit → Celsius</option><option value="c">Celsius → Fahrenheit</option></select><button class="primary" onclick="temp()">Convert</button><div id="r" class="result"></div></div>`;
-if(t.id==='discount')h=`<div class="form">${input('price','Original price','100')}${input('disc','Discount %','20')}<button class="primary" onclick="discount()">Calculate</button><div id="r" class="result"></div></div>`;
-if(t.id==='average')h=`<div class="form"><label>Numbers<input id="nums" placeholder="10, 20, 30, 40"></label><button class="primary" onclick="average()">Calculate</button><div id="r" class="result"></div></div>`;
-if(t.id==='ratio')h=`<div class="form">${input('ra','First ratio number','2')}${input('rb','Second ratio number','3')}<button class="primary" onclick="ratio()">Simplify</button><div id="r" class="result"></div></div>`;
-if(t.id==='countdown')h=`<div class="form">${input('secs','Seconds','60')}<button class="primary" onclick="startCountdown()">Start</button><div id="r" class="timer">00:00</div></div>`;
-if(t.id==='stopwatch')h=`<div class="form"><div id="r" class="timer">00:00.0</div><div class="row"><button class="primary" onclick="swStart()">Start/Pause</button><button class="primary" onclick="swReset()">Reset</button></div></div>`;
-if(t.id==='date')h=`<div class="form"><label>Start date<input id="d1" type="date"></label><label>End date<input id="d2" type="date"></label><button class="primary" onclick="dateDiff()">Calculate</button><div id="r" class="result"></div></div>`;
-if(t.id==='bmi')h=`<div class="form">${input('x','Value A','50')}${input('y','Value B','100')}<button class="primary" onclick="scale()">Calculate score</button><div id="r" class="result"></div><p class="small">This is a generic number scale, not a health assessment.</p></div>`;
-show(t.name,h);
-}
-function n(id){return parseFloat(document.getElementById(id).value)}
-function out(x){document.getElementById('r').textContent=x}
-function fmt(x){return Number.isFinite(x)?Math.round(x*100)/100:'Enter valid numbers.'}
-function calcPercent(){out(`${fmt(n('a')/100*n('b'))}`)}
-function calcTip(){let b=n('bill'),p=n('tipP'),pe=n('people');if(b>0&&p>=0&&pe>0)out(`Tip: $${(b*p/100).toFixed(2)} • Total: $${(b*(1+p/100)).toFixed(2)} • Each: $${(b*(1+p/100)/pe).toFixed(2)}`);else out('Enter valid values.')}
-function calcAge(){let d=new Date(document.getElementById('birth').value),now=new Date();if(!d.getTime()||d>now)return out('Choose a valid past date.');let age=now.getFullYear()-d.getFullYear();let m=now.getMonth()-d.getMonth();if(m<0||(m===0&&now.getDate()<d.getDate()))age--;out(`${age} years old`)}
-function rand(){let a=Math.ceil(n('min')),b=Math.floor(n('max'));if(a>b)[a,b]=[b,a];out(Math.floor(Math.random()*(b-a+1))+a)}
-function choice(){let a=document.getElementById('choices').value.split(',').map(x=>x.trim()).filter(Boolean);out(a.length?a[Math.floor(Math.random()*a.length)]:'Add some choices.')}
-function coin(){out(Math.random()<.5?'Heads':'Tails')}
-function dice(){let k=Math.max(1,Math.min(100,Math.floor(n('diceN'))||1)),a=[...Array(k)].map(()=>Math.floor(Math.random()*6)+1);out(`${a.join(', ')} • Total: ${a.reduce((x,y)=>x+y,0)}`)}
-function convert(id){let v=n('v');if(!Number.isFinite(v))return out('Enter a number.');let x=0,s='';if(id==='miles'){x=v*1.609344;s='km'}if(id==='km'){x=v/1.609344;s='miles'}if(id==='lb'){x=v*.45359237;s='kg'}if(id==='kg'){x=v/0.45359237;s='lb'}if(id==='minutes'){x=Math.floor(v/60);let m=v%60;return out(`${x} hour(s) ${m} minute(s)`)}out(`${fmt(x)} ${s}`)}
-function temp(){let v=n('v'),u=document.getElementById('unit').value;out(u==='f'?`${fmt((v-32)*5/9)} °C`:`${fmt(v*9/5+32)} °F`)}
-function discount(){let p=n('price'),d=n('disc'),save=p*d/100;out(`Sale price: $${(p-save).toFixed(2)} • You save: $${save.toFixed(2)}`)}
-function average(){let a=document.getElementById('nums').value.split(',').map(Number).filter(Number.isFinite);out(a.length?`Average: ${fmt(a.reduce((x,y)=>x+y,0)/a.length)}`:'Enter numbers separated by commas.')}
-function gcd(a,b){while(b){[a,b]=[b,a%b]}return Math.abs(a)}
-function ratio(){let a=Math.round(n('ra')),b=Math.round(n('rb'));if(!a||!b)return out('Enter whole numbers.');let g=gcd(a,b);out(`${a/g} : ${b/g}`)}
-let cdTimer;function startCountdown(){clearInterval(cdTimer);let s=Math.max(0,Math.floor(n('secs'))),r=document.getElementById('r');function tick(){let m=Math.floor(s/60),x=s%60;r.textContent=`${String(m).padStart(2,'0')}:${String(x).padStart(2,'0')}`;if(s<=0){clearInterval(cdTimer);return} s--}tick();cdTimer=setInterval(tick,1000)}
-let swI=null,sw=0,swRun=false;function swStart(){swRun=!swRun;if(swRun){let st=Date.now()-sw;swI=setInterval(()=>{sw=Date.now()-st;document.getElementById('r').textContent=(sw/1000).toFixed(1)},100)}else{clearInterval(swI)}}function swReset(){clearInterval(swI);sw=0;swRun=false;document.getElementById('r').textContent='00:00.0'}
-function dateDiff(){let a=new Date(document.getElementById('d1').value),b=new Date(document.getElementById('d2').value);if(!a.getTime()||!b.getTime())return out('Choose both dates.');out(`${Math.abs(Math.round((b-a)/86400000))} days`)}
-function scale(){let a=n('x'),b=n('y');out(a&&b?`Score: ${fmt((a/b)*10)} / 10`:'Enter valid values.')}
-document.getElementById('themeBtn').onclick=()=>{document.body.classList.toggle('light');if(document.body.classList.contains('light')){document.documentElement.style.setProperty('--bg','#f5f7fb');document.documentElement.style.setProperty('--panel','#fff');document.documentElement.style.setProperty('--panel2','#fff');document.documentElement.style.setProperty('--text','#101525');document.documentElement.style.setProperty('--muted','#59657d');document.documentElement.style.setProperty('--line','#dce2ee');document.body.style.background='#f5f7fb'}else location.reload()};
-render();
+function render(){let q=search.value.toLowerCase().trim(),a=tools.filter(t=>(active==='all'||t[3]===active)&&(t[0]+' '+t[1]+' '+t[2]).toLowerCase().includes(q));grid.innerHTML=a.map((t,i)=>`<article class="card" data-i="${i}"><div class="top"><div class="ico">${t[4]}</div><span class="tag">${labels[t[3]]}</span></div><h3>${t[1]}</h3><p>${t[2]}</p><div class="open">Use tool →</div></article>`).join('');count.textContent=a.length+' tool'+(a.length===1?'':'s');empty.style.display=a.length?'none':'block';[...grid.children].forEach((e,i)=>e.onclick=()=>open(a[i]))}
+search.oninput=render;document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');active=b.dataset.cat;render()});
+const modal=document.getElementById('modal'),mt=document.getElementById('mt'),mb=document.getElementById('mb');function show(t,h){mt.textContent=t;mb.innerHTML=h;modal.classList.add('show')}function closeModal(){modal.classList.remove('show')}modal.onclick=e=>{if(e.target===modal)closeModal()};function inp(id,l,p=''){return`<label>${l}<input id="${id}" type="number" placeholder="${p}"></label>`}function out(x){document.getElementById('r').textContent=x}function N(id){return parseFloat(document.getElementById(id).value)}function f(x){return Number.isFinite(x)?Math.round(x*100)/100:'Enter valid values.'}
+function open(t){let id=t[0],h='<div class="form">';if(id==='percent')h+=inp('a','Percentage','25')+inp('b','Number','200')+'<button class="primary" onclick="out(f(N(\\'a\\')/100*N(\\'b\\')))">Calculate</button>';
+else if(id==='discount')h+=inp('a','Original price','100')+inp('b','Discount %','20')+'<button class="primary" onclick="let p=N(\\'a\\'),d=N(\\'b\\');out(`Sale price: $${(p-p*d/100).toFixed(2)} · Save: $${(p*d/100).toFixed(2)}`)">Calculate</button>';
+else if(id==='average')h+='<label>Numbers<input id="a" placeholder="10, 20, 30"></label><button class="primary" onclick="let x=document.getElementById(\\'a\\').value.split(\\',\\').map(Number).filter(Number.isFinite);out(x.length?`Average: ${f(x.reduce((a,b)=>a+b,0)/x.length)}`:\\'Enter numbers.\\')">Calculate</button>';
+else if(id==='ratio')h+=inp('a','First number','2')+inp('b','Second number','3')+'<button class="primary" onclick="let a=Math.round(N(\\'a\\')),b=Math.round(N(\\'b\\'));function g(a,b){while(b)[a,b]=[b,a%b];return Math.abs(a)}out(a&&b?`${a/g(a,b)} : ${b/g(a,b)}`:\\'Enter whole numbers.\\')">Simplify</button>';
+else if(id==='tip')h+=inp('a','Bill amount','50')+inp('b','Tip %','20')+inp('c','People','2')+'<button class="primary" onclick="let b=N(\\'a\\'),p=N(\\'b\\'),n=N(\\'c\\');out(`Tip: $${(b*p/100).toFixed(2)} · Each: $${(b*(1+p/100)/n).toFixed(2)}`)">Calculate</button>';
+else if(id==='age')h+='<label>Birth date<input id="a" type="date"></label><button class="primary" onclick="let d=new Date(document.getElementById(\\'a\\').value),n=new Date(),x=n.getFullYear()-d.getFullYear(),m=n.getMonth()-d.getMonth();if(m<0||(m===0&&n.getDate()<d.getDate()))x--;out(x>=0?`${x} years old`:\\'Choose a valid date.\\')">Calculate</button>';
+else if(id==='scale')h+=inp('a','Value A','50')+inp('b','Value B','100')+'<button class="primary" onclick="out(N(\\'a\\')&&N(\\'b\\')?`Score: ${f(N(\\'a\\')/N(\\'b\\')*10)} / 10`:\\'Enter values.\\')">Calculate</button>';
+else if(['miles','km','lb','kg','minutes'].includes(id))h+=inp('a','Value','10')+'<button class="primary" onclick="let v=N(\\'a\\'),x,s;if(\\''+id+'\\'===\\'miles\\'){x=v*1.609344;s=\\'km\\'}if(\\''+id+'\\'===\\'km\\'){x=v/1.609344;s=\\'miles\\'}if(\\''+id+'\\'===\\'lb\\'){x=v*.45359237;s=\\'kg\\'}if(\\''+id+'\\'===\\'kg\\'){x=v/.45359237;s=\\'lb\\'}if(\\''+id+'\\'===\\'minutes\\'){return out(`${Math.floor(v/60)} hour(s) ${v%60} minute(s)`)}out(`${f(x)} ${s}`)">Convert</button>';
+else if(id==='temp')h+=inp('a','Temperature','72')+'<select id="u"><option value="f">F → C</option><option value="c">C → F</option></select><button class="primary" onclick="let v=N(\\'a\\');out(document.getElementById(\\'u\\').value===\\'f\\'?`${f((v-32)*5/9)} °C`:`${f(v*9/5+32)} °F`)">Convert</button>';
+else if(id==='random')h+=inp('a','Minimum','1')+inp('b','Maximum','100')+'<button class="primary" onclick="let a=Math.ceil(N(\\'a\\')),b=Math.floor(N(\\'b\\'));out(Math.floor(Math.random()*(b-a+1))+a)">Generate</button>';
+else if(id==='choice')h+='<label>Choices<input id="a" placeholder="Pizza, Tacos, Burgers"></label><button class="primary" onclick="let a=document.getElementById(\\'a\\').value.split(\\',\\').map(x=>x.trim()).filter(Boolean);out(a.length?a[Math.floor(Math.random()*a.length)]:\\'Add choices.\\')">Choose</button>';
+else if(id==='coin')h+='<button class="primary" onclick="out(Math.random()<.5?\\'Heads\\':\\'Tails\\')">Flip</button>';
+else if(id==='dice')h+=inp('a','Number of dice','2')+'<button class="primary" onclick="let n=Math.max(1,Math.min(100,Math.floor(N(\\'a\\')))),a=[...Array(n)].map(()=>Math.floor(Math.random()*6)+1);out(`${a.join(\\', \\')} · Total: ${a.reduce((x,y)=>x+y,0)}`)">Roll</button>';
+else if(id==='countdown')h+=inp('a','Seconds','60')+'<button class="primary" onclick="startCD()">Start</button><div id="r" class="timer">00:00</div>';
+else if(id==='stopwatch')h+='<div id="r" class="timer">0.0</div><div class="row"><button class="primary" onclick="sw()">Start/Pause</button><button class="primary" onclick="sr()">Reset</button></div>';
+else if(id==='date')h+='<label>Start date<input id="a" type="date"></label><label>End date<input id="b" type="date"></label><button class="primary" onclick="let a=new Date(document.getElementById(\\'a\\').value),b=new Date(document.getElementById(\\'b\\').value);out(`${Math.abs(Math.round((b-a)/86400000))} days`)">Calculate</button>';h+='<div id="r" class="result"></div></div>';show(t[1],h)}
+let cdi,swI,swv=0,swRun=false;function startCD(){clearInterval(cdi);let s=Math.max(0,Math.floor(N('a'))),r=document.getElementById('r');function x(){r.textContent=`${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;if(s<=0)return clearInterval(cdi);s--}x();cdi=setInterval(x,1000)}function sw(){swRun=!swRun;if(swRun){let st=Date.now()-swv;swI=setInterval(()=>{swv=Date.now()-st;document.getElementById('r').textContent=(swv/1000).toFixed(1)},100)}else clearInterval(swI)}function sr(){clearInterval(swI);swRun=false;swv=0;document.getElementById('r').textContent='0.0'}
+function showAbout(){show('About QuickTools','<p class="note">QuickTools is a simple collection of browser-based utilities. Everything runs locally in your browser for the tools on this page.</p>')}function showPrivacy(){show('Privacy','<p class="note">QuickTools does not ask you to create an account. Avoid entering sensitive information into any public website.</p>')}render();
 </script>
 </body></html>
